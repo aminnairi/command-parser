@@ -4,16 +4,16 @@ import 'mocha';
 
 describe('Command Parser', () => {
   it('should parse double-dash non-boolean argument', () => {
-    const commandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser();
 
     commandParser.add('credentials', 'Credentials');
 
-    const options = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(commandParser.parse([
       '--credentials',
       '/etc/openvpn/client/credentials.txt'
     ]));
 
-    const expected = JSON.stringify({
+    const expected: string = JSON.stringify({
       credentials: '/etc/openvpn/client/credentials.txt'
     });
 
@@ -21,19 +21,19 @@ describe('Command Parser', () => {
   });
 
   it('should parse multiple double-dash non-boolean arguments', () => {
-    const commandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser();
 
     commandParser.add('credentials', 'Credentials');
     commandParser.add('tunel', 'Tunel');
 
-    const options = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(commandParser.parse([
       '--credentials',
       '/etc/openvpn/client/credentials.txt',
       '--tunel',
       '/etc/openvpn/client/config.ovpn'
     ]));
 
-    const expected = JSON.stringify({
+    const expected: string = JSON.stringify({
       credentials: '/etc/openvpn/client/credentials.txt',
       tunel: '/etc/openvpn/client/config.ovpn'
     });
@@ -42,16 +42,18 @@ describe('Command Parser', () => {
   });
 
   it('should parse double-dash boolean argument', () => {
-    const commandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser();
 
     commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
 
-    const options = commandParser.parse([
+    const options: string = JSON.stringify(commandParser.parse([
       '--secure'
-    ]);
+    ]));
 
-    expect(JSON.stringify(options)).to.be.equal(JSON.stringify({
+    const expected: string = JSON.stringify({
       secure: 'yes'
-    }));
+    });
+
+    expect(options).to.be.equal(expected);
   });
 });
