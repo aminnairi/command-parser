@@ -1,0 +1,50 @@
+{
+  "name": "command-parser",
+  "version": "0.0.0",
+  "description": "Command Line Parser",
+  "main": "index.js",
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "all": true
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "mutations": "stryker run --mutate src/index.ts",
+    "development": "webpack --env.development",
+    "production": "webpack --env.production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aminnairi/command-parser.git"
+  },
+  "keywords": [
+    "cli",
+    "parser",
+    "command"
+  ],
+  "author": "Amin NAIRI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aminnairi/command-parser/issues"
+  },
+  "homepage": "https://github.com/aminnairi/command-parser#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "@types/webpack": "^4.4.22",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-loader": "^5.3.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
