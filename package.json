@@ -3,16 +3,6 @@
   "version": "0.0.0",
   "description": "Command Line Parser",
   "main": "index.js",
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "all": true
-  },
   "scripts": {
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "mutations": "stryker run --mutate src/index.ts",
