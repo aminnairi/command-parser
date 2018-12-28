@@ -34,12 +34,6 @@ user@host:~/command-parser$
 user@host:~/command-parser$ npm install
 ```
 
-### Testing
-
-```console
-user@host:~/command-parser$ npm test
-```
-
 ### Build
 
 #### Development
@@ -52,4 +46,10 @@ user@host:~/command-parser$ npm run development
 
 ```console
 user@host:~/command-parser$ npm run production
+```
+
+### Testing
+
+```console
+user@host:~/command-parser$ npm test
 ```
