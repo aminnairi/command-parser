@@ -56,4 +56,23 @@ describe('Command Parser', () => {
 
     expect(options).to.be.equal(expected);
   });
+
+  it('should parse multiple double-dash boolean arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '--secure',
+      '--tcp'
+    ]));
+
+    const expected: string = JSON.stringify({
+      secure: 'yes',
+      tcp: 'yes'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
 });
