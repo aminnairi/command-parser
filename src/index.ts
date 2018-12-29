@@ -134,6 +134,6 @@ class CommandParser {
   }
 }
 
-const NO_VALUE_EXPECTED = true;
+const NO_VALUE_EXPECTED: boolean = true;
 
 export { CommandParser, NO_VALUE_EXPECTED };
