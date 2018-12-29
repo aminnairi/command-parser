@@ -33,15 +33,21 @@ class CommandParser {
     noValueExpected: boolean = false
   ): this {
     if (typeof name !== 'string') {
-      throw new TypeError('[CommandParser][option] first argument should be of type string');
+      throw new TypeError(
+        '[CommandParser][option] first argument should be of type string'
+      );
     }
 
     if (typeof description !== 'string') {
-      throw new TypeError('[CommandParser][option] second argument should be of type string');
+      throw new TypeError(
+        '[CommandParser][option] second argument should be of type string'
+      );
     }
 
     if (typeof noValueExpected !== 'boolean') {
-      throw new TypeError('[CommandParser][option] third argument should be of type boolean');
+      throw new TypeError(
+        '[CommandParser][option] third argument should be of type boolean'
+      );
     }
 
     let short: Options['short'] = `-${name[0]}`;
@@ -65,12 +71,16 @@ class CommandParser {
 
   parse(parameters: string[] = process.argv.slice(2)): CommandParserOptions {
     if (!Array.isArray(parameters)) {
-      throw new TypeError('[CommandParser][parse] first argument must be of type array');
+      throw new TypeError(
+        '[CommandParser][parse] first argument must be of type array'
+      );
     }
 
     for (const parameter of parameters) {
       if (typeof parameter !== 'string') {
-        throw new TypeError('[CommandParser][parse] all elements of the first argument must be of type string')
+        throw new TypeError(
+          '[CommandParser][parse] all elements of the first argument must be of type string'
+        );
       }
     }
 
