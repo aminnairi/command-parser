@@ -23,7 +23,11 @@ class CommandParser {
     ];
   }
 
-  option(option: string, description: string, noValueExpected: Boolean = false) {
+  option(
+    option: string,
+    description: string,
+    noValueExpected: Boolean = false
+  ) {
     let short: string | undefined = `-${option[0]}`;
 
     for (const option of this.options) {
