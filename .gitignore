@@ -9,3 +9,6 @@ node_modules
 
 # NPM configuration
 .npmrc
+
+# Istanbul reporting
+.nyc_output
