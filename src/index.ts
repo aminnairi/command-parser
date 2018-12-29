@@ -65,7 +65,13 @@ class CommandParser {
 
   parse(parameters: string[] = process.argv.slice(2)): CommandParserOptions {
     if (!Array.isArray(parameters)) {
-      throw new TypeError('first argument must be of type array');
+      throw new TypeError('[CommandParser][parse] first argument must be of type array');
+    }
+
+    for (const parameter of parameters) {
+      if (typeof parameter !== 'string') {
+        throw new TypeError('[CommandParser][parse] all elements of the first argument must be of type string')
+      }
     }
 
     const provided: CommandParserOptions = {};
