@@ -9,7 +9,7 @@ interface Options {
 }
 
 interface CommandParserOptions {
-  [key: string]: string
+  [key: string]: string;
 }
 
 class CommandParser {
