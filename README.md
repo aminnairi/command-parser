@@ -12,13 +12,13 @@ user@host:~/my-cli$ node index.js --existing ~/my-project --editor /usr/bin/code
 
 import { CommandParser } from 'command-parser';
 
-const options = new CommandParser();
+const parser = new CommandParser();
 
-options.add('create', 'Folder where to create the new project');
-options.add('existing', 'Folder where an existing project exists');
-options.add('editor', 'Editor to use to open the project');
+parser.add('create', 'Folder where to create the new project');
+parser.add('existing', 'Folder where an existing project exists');
+parser.add('editor', 'Editor to use to open the project');
 
-console.log(options.parse());
+console.log(parser.parse());
 
 // { existing: '~/my-project/', editor: '/usr/bin/code' }
 ```
