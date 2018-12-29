@@ -13,7 +13,7 @@ interface CommandParserOptions {
 }
 
 class CommandParser {
-  options: Options[];
+  private options: Options[];
 
   constructor() {
     this.options = [
