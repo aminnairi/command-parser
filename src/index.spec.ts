@@ -86,4 +86,48 @@ describe('Command Parser', () => {
 
     expect(options).to.be.equal(expected);
   });
+
+  it('should parse single-dash non-boolean arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('tunel', 'Tunel');
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '-c',
+      '/etc/openvpn/client/credentials.txt',
+      '-t',
+      '/etc/openvpn/client/config.ovpn'
+    ]));
+
+    const expected: string = JSON.stringify({
+      credentials: '/etc/openvpn/client/credentials.txt',
+      tunel: '/etc/openvpn/client/config.ovpn'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse single-dash non-boolean arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('tunel', 'Tunel');
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/openvpn.conf',
+      '-c',
+      '/etc/openvpn/client/credentials.txt',
+      '-t',
+      '/etc/openvpn/client/config.ovpn'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/openvpn.conf',
+      credentials: '/etc/openvpn/client/credentials.txt',
+      tunel: '/etc/openvpn/client/config.ovpn'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
 });
