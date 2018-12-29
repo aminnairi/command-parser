@@ -68,19 +68,31 @@ class CommandParser {
         continue;
       }
 
+      let found = false;
+
       for (const option of this.options) {
 
         if (parameter === option.long || parameter === option.short) {
           if (option.noValueExpected === NO_VALUE_EXPECTED) {
             provided[option.name] = 'yes';
+            found = true;
           } else {
             const next = parameters[index + 1];
 
             if (next) {
               provided[option.name] = next;
               index += 1;
+              found = true;
             }
           }
+        }
+      }
+
+      if (!found) {
+        if ('argument' in provided) {
+          provided['argument'] += ` ${parameter}`; 
+        } else {
+          provided['argument'] = parameter; 
         }
       }
     }
