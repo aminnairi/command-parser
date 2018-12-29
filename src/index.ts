@@ -106,10 +106,10 @@ class CommandParser {
   }
 
   help() {
-    let string = 'OPTIONS\n';
+    let string = 'OPTIONS';
 
     for (const option of this.options) {
-      string += '\n\t';
+      string += '\n\n    ';
 
       if (option.short) {
         string += `${option.short}, ${option.long}`;
@@ -117,7 +117,7 @@ class CommandParser {
         string += `${option.long}`;
       }
 
-      string += `\n\t\t${option.description}\n`;
+      string += `\n        ${option.description}`;
     }
 
     return string;
