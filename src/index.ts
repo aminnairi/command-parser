@@ -54,7 +54,7 @@ class CommandParser {
   parse(parameters: string[] = process.argv.slice(2)): CommandParserOptions {
     const provided: CommandParserOptions = {};
 
-    for (let index = 0; index < parameters.length; index++) {
+    for (let index: number = 0; index < parameters.length; index++) {
       const parameter = parameters[index];
 
       if (parameter === '--help' || parameter === '-h') {
