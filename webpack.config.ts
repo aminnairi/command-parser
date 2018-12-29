@@ -17,6 +17,12 @@ export default ({ development, production }: CommandOptions) => ({
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: 'prettier-loader'
+      },
+      {
         test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'ts-loader'
