@@ -1,5 +1,5 @@
 {
-  "name": "command-parser",
+  "name": "@aminnairi/command-parser",
   "version": "0.0.1",
   "description": "Command Line Parser",
   "main": "index.js",
