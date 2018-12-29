@@ -5,24 +5,26 @@ interface Options {
   long: string;
   name: string;
   noValueExpected: Boolean;
-  short: string|undefined;
+  short: string | undefined;
 }
 
 class CommandParser {
   options: Options[];
 
   constructor() {
-    this.options = [{
-      description: 'Display this message',
-      long: '--help',
-      name: 'help',
-      noValueExpected: true,
-      short: '-h'
-    }];
+    this.options = [
+      {
+        description: 'Display this message',
+        long: '--help',
+        name: 'help',
+        noValueExpected: true,
+        short: '-h'
+      }
+    ];
   }
 
   add(option: string, description: string, noValueExpected: Boolean = false) {
-    let short: string|undefined = `-${option[0]}`;
+    let short: string | undefined = `-${option[0]}`;
 
     for (const option of this.options) {
       if (option.short === short) {
@@ -40,11 +42,10 @@ class CommandParser {
   }
 
   parse(parameters: string[] = process.argv.slice(2)) {
-    const provided: {[key: string]: string} = {};
+    const provided: { [key: string]: string } = {};
 
     for (let index = 0; index < parameters.length; index++) {
       const parameter = parameters[index];
-
 
       if (parameter === '--help' || parameter === '-h') {
         console.log(this.help());
@@ -52,7 +53,11 @@ class CommandParser {
         process.exit(0);
       }
 
-      if (parameter.startsWith('-') && parameter[1] !== '-' && parameter.length > 2) {
+      if (
+        parameter.startsWith('-') &&
+        parameter[1] !== '-' &&
+        parameter.length > 2
+      ) {
         const multiParameters = parameter.slice(1).split('');
         const count = multiParameters.length;
 
@@ -70,7 +75,6 @@ class CommandParser {
       let found = false;
 
       for (const option of this.options) {
-
         if (parameter === option.long || parameter === option.short) {
           if (option.noValueExpected === NO_VALUE_EXPECTED) {
             provided[option.name] = 'yes';
@@ -91,9 +95,9 @@ class CommandParser {
 
       if (!found) {
         if ('argument' in provided) {
-          provided['argument'] += ` ${parameter}`; 
+          provided['argument'] += ` ${parameter}`;
         } else {
-          provided['argument'] = parameter; 
+          provided['argument'] = parameter;
         }
       }
     }
@@ -105,7 +109,6 @@ class CommandParser {
     let string = 'OPTIONS\n';
 
     for (const option of this.options) {
-
       string += '\n\t';
 
       if (option.short) {
@@ -123,7 +126,4 @@ class CommandParser {
 
 const NO_VALUE_EXPECTED = true;
 
-export {
-  CommandParser,
-  NO_VALUE_EXPECTED
-};
+export { CommandParser, NO_VALUE_EXPECTED };
