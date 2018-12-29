@@ -2,6 +2,27 @@
 
 Command Line Arguments Parser
 
+```console
+user@host:~/my-cli$ node index.js --existing ~/my-project --editor /usr/bin/code
+```
+
+```javascript
+// index.js
+'use strict';
+
+import { CommandParser } from 'command-parser';
+
+const options = new CommandParser();
+
+options.add('create', 'Folder where to create the new project');
+options.add('existing', 'Folder where an existing project exists');
+options.add('editor', 'Editor to use to open the project');
+
+console.log(options.parse());
+
+// { existing: '~/my-project/', editor: '/usr/bin/code' }
+```
+
 ## Development
 
 ### Requirements
