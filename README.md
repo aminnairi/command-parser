@@ -1,5 +1,7 @@
 # command-parser
 
+![](https://img.shields.io/github/issues/aminnairi/command-parser.svg?style=plastic) ![](https://img.shields.io/github/license/aminnairi/command-parser.svg?style=plastic)
+
 Command Line Arguments Parser
 
 ## Installation
