@@ -32,7 +32,7 @@ class CommandParser {
     description: string,
     noValueExpected: boolean = false
   ): this {
-    let short: string | undefined = `-${option[0]}`;
+    let short: Options['short'] = `-${option[0]}`;
 
     for (const option of this.options) {
       if (option.short === short) {
