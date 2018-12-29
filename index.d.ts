@@ -8,7 +8,7 @@ interface Options {
 declare class CommandParser {
     options: Options[];
     constructor();
-    add(option: string, description: string, noValueExpected?: Boolean): void;
+    option(option: string, description: string, noValueExpected?: Boolean): void;
     parse(parameters?: string[]): {
         [key: string]: string;
     };
