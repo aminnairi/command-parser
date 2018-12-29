@@ -168,4 +168,73 @@ describe('Command Parser', () => {
 
     expect(options).to.be.equal(expected);
   });
+
+  it('should display the help correctly formated from the arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'File to where to find the OpenVPN credentials');
+    commandParser.add('passthrough', 'File to where to find the OpenVPN configuration');
+    commandParser.add('user', 'User to be substituted to before opening the tunnel');
+    commandParser.add('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+
+    const help = commandParser.help();
+
+    const expected = `OPTIONS
+
+    -h, --help
+        Display this message
+
+    -c, --credentials
+        File to where to find the OpenVPN credentials
+
+    -p, --passthrough
+        File to where to find the OpenVPN configuration
+
+    -u, --user
+        User to be substituted to before opening the tunnel
+
+    -s, --secure
+        Use advanced maximum security features for the VPN tunnel
+
+    -t, --tcp
+        Use the TCP protocol instead of UDP`;
+
+    expect(help).to.be.equal(expected);
+  });
+
+  it('should display the help correctly with same first letter arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'File to where to find the OpenVPN credentials');
+    commandParser.add('configuration', 'File to where to find the OpenVPN configuration');
+    commandParser.add('user', 'User to be substituted to before opening the tunnel');
+    commandParser.add('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+
+    const help = commandParser.help();
+
+    const expected = `OPTIONS
+
+    -h, --help
+        Display this message
+
+    -c, --credentials
+        File to where to find the OpenVPN credentials
+
+    --configuration
+        File to where to find the OpenVPN configuration
+
+    -u, --user
+        User to be substituted to before opening the tunnel
+
+    -s, --secure
+        Use advanced maximum security features for the VPN tunnel
+
+    -t, --tcp
+        Use the TCP protocol instead of UDP`;
+
+    expect(help).to.be.equal(expected);
+  });
+
 });
