@@ -237,4 +237,53 @@ describe('Command Parser', () => {
     expect(help).to.be.equal(expected);
   });
 
+  it('should throw an error when providing a non-string as the first argument of the option method', () => {
+    const parser = new CommandParser();
+
+    // @ts-ignore
+    expect(() => parser.option(123, 'Configuration', NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] first argument should be of type string');
+  });
+
+  it('should throw an error when providing a non-string as the second argument of the option method', () => {
+    const parser = new CommandParser();
+
+    // @ts-ignore
+    expect(() => parser.option('configuration', 123, NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] second argument should be of type string');
+  });
+
+  it('should throw an error when providing a non-boolean as the third argument of the option method', () => {
+    const parser = new CommandParser();
+
+    // @ts-ignore
+    expect(() => parser.option('configuration', 'Configuration', 'NO_VALUE_EXPECTED')).to.throw('[CommandParser][option] third argument should be of type boolean');
+  });
+
+  it('should throw an error when providing a non-array as the first argument of the parse method', () => {
+    const parser = new CommandParser();
+
+    // @ts-ignore
+    expect(() => parser.parse({})).to.throw('[CommandParser][parse] first argument must be of type array');
+  });
+
+  it('should throw an error if one or more element of the first argument is a non-string for the parse method', () => {
+    const parser = new CommandParser();
+
+    // @ts-ignore
+    expect(() => parser.parse([123])).to.throw('[CommandParser][parse] all elements of the first argument must be of type string');
+  });
+
+  it('should add all the unexpected option in the argument property for the method parse', () => {
+    const parser = new CommandParser();
+
+    const options = JSON.stringify(parser.parse([
+      '--unexpected',
+      '/etc/openvpn/client/openvpn.conf'
+    ]));
+
+    const expected = JSON.stringify({
+      argument: '--unexpected /etc/openvpn/client/openvpn.conf'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
 });
