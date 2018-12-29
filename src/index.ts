@@ -55,7 +55,7 @@ class CommandParser {
     const provided: CommandParserOptions = {};
 
     for (let index: number = 0; index < parameters.length; index++) {
-      const parameter = parameters[index];
+      const parameter: string = parameters[index];
 
       if (parameter === '--help' || parameter === '-h') {
         console.log(this.help());
