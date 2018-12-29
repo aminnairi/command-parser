@@ -1,19 +1,12 @@
-interface Options {
-    description: string;
-    long: string;
-    name: string;
-    noValueExpected: Boolean;
-    short: string | undefined;
-}
 interface CommandParserOptions {
     [key: string]: string;
 }
 declare class CommandParser {
-    options: Options[];
+    private options;
     constructor();
-    option(option: string, description: string, noValueExpected?: Boolean): this;
+    option(name: string, description: string, noValueExpected?: boolean): this;
     parse(parameters?: string[]): CommandParserOptions;
     help(): string;
 }
-declare const NO_VALUE_EXPECTED = true;
+declare const NO_VALUE_EXPECTED: boolean;
 export { CommandParser, NO_VALUE_EXPECTED };
