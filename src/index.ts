@@ -8,6 +8,10 @@ interface Options {
   short: string | undefined;
 }
 
+interface CommandParserOptions {
+  [key: string]: string
+}
+
 class CommandParser {
   options: Options[];
 
@@ -47,8 +51,8 @@ class CommandParser {
     return this;
   }
 
-  parse(parameters: string[] = process.argv.slice(2)) {
-    const provided: { [key: string]: string } = {};
+  parse(parameters: string[] = process.argv.slice(2)): CommandParserOptions {
+    const provided: CommandParserOptions = {};
 
     for (let index = 0; index < parameters.length; index++) {
       const parameter = parameters[index];
