@@ -27,7 +27,7 @@ class CommandParser {
     option: string,
     description: string,
     noValueExpected: Boolean = false
-  ) {
+  ): this {
     let short: string | undefined = `-${option[0]}`;
 
     for (const option of this.options) {
@@ -43,6 +43,8 @@ class CommandParser {
       noValueExpected,
       short
     });
+
+    return this;
   }
 
   parse(parameters: string[] = process.argv.slice(2)) {
