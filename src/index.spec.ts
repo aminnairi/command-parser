@@ -20,6 +20,25 @@ describe('Command Parser', () => {
     expect(options).to.be.equal(expected);
   });
 
+  it('should parse double-dash non-boolean argument with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/config.ovpn',
+      '--credentials',
+      '/etc/openvpn/client/credentials.txt',
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/config.ovpn',
+      credentials: '/etc/openvpn/client/credentials.txt'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
   it('should parse multiple double-dash non-boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
@@ -34,6 +53,29 @@ describe('Command Parser', () => {
     ]));
 
     const expected: string = JSON.stringify({
+      credentials: '/etc/openvpn/client/credentials.txt',
+      tunel: '/etc/openvpn/client/config.ovpn'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse multiple double-dash non-boolean arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('tunel', 'Tunel');
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/openvpn.conf',
+      '--credentials',
+      '/etc/openvpn/client/credentials.txt',
+      '--tunel',
+      '/etc/openvpn/client/config.ovpn'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/openvpn.conf',
       credentials: '/etc/openvpn/client/credentials.txt',
       tunel: '/etc/openvpn/client/config.ovpn'
     });
@@ -57,6 +99,24 @@ describe('Command Parser', () => {
     expect(options).to.be.equal(expected);
   });
 
+  it('should parse double-dash boolean argument with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/config.ovpn',
+      '--secure'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/config.ovpn',
+      secure: 'yes'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
   it('should parse multiple double-dash boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
@@ -69,6 +129,27 @@ describe('Command Parser', () => {
     ]));
 
     const expected: string = JSON.stringify({
+      secure: 'yes',
+      tcp: 'yes'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse multiple double-dash boolean arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/config.ovpn',
+      '--secure',
+      '--tcp'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/config.ovpn',
       secure: 'yes',
       tcp: 'yes'
     });
