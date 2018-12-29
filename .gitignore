@@ -1,2 +1,11 @@
 # Nodejs packages folder
 node_modules
+
+# NPM configstore
+.config
+
+# NPM cache
+.npm
+
+# NPM configuration
+.npmrc
