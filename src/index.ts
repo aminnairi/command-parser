@@ -68,12 +68,12 @@ class CommandParser {
         parameter[1] !== '-' &&
         parameter.length > 2
       ) {
-        const multiParameters = parameter.slice(1).split('');
-        const count = multiParameters.length;
+        const multiParameters: string[] = parameter.slice(1).split('');
+        const count: number = multiParameters.length;
 
         parameters.splice(index, 1);
 
-        for (let position = count - 1; position >= 0; position--) {
+        for (let position: number = count - 1; position >= 0; position--) {
           parameters.splice(index, 0, `-${multiParameters[position]}`);
         }
 
@@ -82,7 +82,7 @@ class CommandParser {
         continue;
       }
 
-      let found = false;
+      let found: boolean = false;
 
       for (const option of this.options) {
         if (parameter === option.long || parameter === option.short) {
@@ -116,7 +116,7 @@ class CommandParser {
   }
 
   help(): string {
-    let string = 'OPTIONS';
+    let string: string = 'OPTIONS';
 
     for (const option of this.options) {
       string += '\n\n    ';
