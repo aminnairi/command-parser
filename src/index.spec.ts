@@ -2,6 +2,23 @@ import { CommandParser, NO_VALUE_EXPECTED } from './index';
 import { expect } from 'chai';
 import 'mocha';
 
+const consoleLogOutputCorrectly = (callback: () => {}, message: string): boolean => {
+  let oldConsoleLog = console.log;
+  let called = false;
+
+  console.log = (string) => {
+    if (string === message) {
+      called = true;
+    }
+  }
+
+  callback();
+
+  console.log = oldConsoleLog;
+
+  return called;
+}
+
 describe('Command Parser', () => {
   it('should parse double-dash non-boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
@@ -285,5 +302,56 @@ describe('Command Parser', () => {
     });
 
     expect(options).to.be.equal(expected);
+  });
+
+  it('should trigger the help when using the --help parameter for the parse method', () => {
+    const parser = new CommandParser();
+
+    const consoleCalled = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `OPTIONS
+
+    -h, --help
+        Display this message`);
+
+    expect(consoleCalled).to.be.true;
+  });
+
+  it('should use the fallback process argument instead of an array for the method parse', () => {
+    const parser = new CommandParser();
+
+    process.argv = [
+      '/usr/local/bin/node',
+      '/home/node/app/index.js',
+      '--file',
+      '/etc/openvpn/client/openvpn.conf'
+    ];
+
+    parser.option('file', 'File to use for the OpenVPN connection');
+
+    const result = JSON.stringify(parser.parse());
+
+    const expected = JSON.stringify({
+      file: '/etc/openvpn/client/openvpn.conf'
+    });
+
+    expect(result).to.be.equal(expected);
+  });
+
+  it('should not append the value if a parameter is missing its value', () => {
+    const parser = new CommandParser();
+
+    parser.option('secure', 'Secure the tunel', NO_VALUE_EXPECTED);
+    parser.option('file', 'File to be used for the OpenVPN connection');
+
+    const result = JSON.stringify(parser.parse([
+      '--secure',
+      '--file'
+    ]));
+
+    const expected = JSON.stringify({
+      secure: 'yes',
+      argument: '--file'
+    });
+
+    expect(result).to.be.equal(expected);
   });
 });
