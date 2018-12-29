@@ -170,4 +170,42 @@ describe('Command Parser', () => {
 
     expect(options).to.be.equal(expected);
   });
+
+  it('should parse single-dash single-token boolean arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '-st',
+    ]));
+
+    const expected: string = JSON.stringify({
+      secure: 'yes',
+      tcp: 'yes'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse single-dash single-token boolean arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/openvpn.conf',
+      '-st',
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/openvpn.conf',
+      secure: 'yes',
+      tcp: 'yes'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
 });
