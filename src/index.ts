@@ -30,7 +30,7 @@ class CommandParser {
   option(
     option: string,
     description: string,
-    noValueExpected: Boolean = false
+    noValueExpected: boolean = false
   ): this {
     let short: string | undefined = `-${option[0]}`;
 
