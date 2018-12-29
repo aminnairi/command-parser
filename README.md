@@ -2,25 +2,65 @@
 
 Command Line Arguments Parser
 
+## Installation
+
 ```console
-user@host:~/my-cli$ node index.js --existing ~/my-project --editor /usr/bin/code
+user@host:~/my-cli$ npm install --save @aminnairi/command-parser
 ```
 
+## Importation
+
+### ECMAScript Modules
+
 ```javascript
-// index.js
 'use strict';
 
-import { CommandParser } from 'command-parser';
+import { CommandParser, NO_VALUE_EXCEPTED } from '@aminnairi/command-parser';
+```
 
+### CommonJS
+
+```javascript
+'use strict';
+
+const { CommandParser, NO_VALUE_EXCEPTED } = require('@aminnairi/command-parser');
+```
+
+## Usage
+
+```javascript
 const parser = new CommandParser();
 
-parser.option('create', 'Folder where to create the new project');
-parser.option('existing', 'Folder where an existing project exists');
-parser.option('editor', 'Editor to use to open the project');
+parser.option('quiet', 'Do not output anything except the result', NO_VALUE_EXPECTED);
+parser.option('config', 'Path to the configuration file');
 
-console.log(parser.parse());
+const options = parser.parse();
 
-// { existing: '~/my-project/', editor: '/usr/bin/code' }
+console.log(options);
+/* {
+  quiet: 'yes',
+  config: '/usr/share/app.conf',
+  argument: 'my-app'
+} */
+```
+
+```console
+user@host:~/my-cli$ node index.js --quiet --config /usr/share/app.conf my-app
+user@host:~/my-cli$ # or
+user@host:~/my-cli$ node index.js -q -c /usr/share/app.conf my-app
+user@host:~/my-cli$ # or
+user@host:~/my-cli$ node index.js -qc /usr/share/app.conf my-app
+user@host:~/my-cli$ node index.js --help
+OPTIONS
+
+    -h, --help
+        Display this message
+
+    -q, --quiet
+        Do not output anything except the result
+
+    -c, --config
+        Path to the configuration file
 ```
 
 ## Development
