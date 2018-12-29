@@ -7,6 +7,7 @@ interface CommandOptions {
 
 export default ({ development, production }: CommandOptions) => ({
   mode: development ? 'development' : production ? 'production' : 'production',
+  target: 'node',
   entry: resolve('src', 'index.ts'),
 
   output: {
