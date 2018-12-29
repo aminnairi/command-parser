@@ -6,8 +6,8 @@ describe('Command Parser', () => {
   it('should parse double-dash non-boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'Credentials');
-    commandParser.add('tunel', 'Tunel');
+    commandParser.option('credentials', 'Credentials');
+    commandParser.option('tunel', 'Tunel');
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -29,8 +29,8 @@ describe('Command Parser', () => {
   it('should parse double-dash boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/config.ovpn',
@@ -50,8 +50,8 @@ describe('Command Parser', () => {
   it('should parse single-dash non-boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'Credentials');
-    commandParser.add('tunel', 'Tunel');
+    commandParser.option('credentials', 'Credentials');
+    commandParser.option('tunel', 'Tunel');
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -73,8 +73,8 @@ describe('Command Parser', () => {
   it('should parse single-dash boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -94,8 +94,8 @@ describe('Command Parser', () => {
   it('should parse single-dash single-token boolean arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -114,10 +114,10 @@ describe('Command Parser', () => {
   it('should parse single-dash single-token mixed arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'Credentials');
-    commandParser.add('passthrough', 'Tunel to use');
-    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    commandParser.option('credentials', 'Credentials');
+    commandParser.option('passthrough', 'Tunel to use');
+    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -141,11 +141,11 @@ describe('Command Parser', () => {
   it('should parse mixed-dash mixed-token mixed arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'Credentials');
-    commandParser.add('passthrough', 'Tunel to use');
-    commandParser.add('user', 'User to substitue to');
-    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    commandParser.option('credentials', 'Credentials');
+    commandParser.option('passthrough', 'Tunel to use');
+    commandParser.option('user', 'User to substitue to');
+    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
     const options: string = JSON.stringify(commandParser.parse([
       '/etc/openvpn/client/openvpn.conf',
@@ -172,11 +172,11 @@ describe('Command Parser', () => {
   it('should display the help correctly formated from the arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'File to where to find the OpenVPN credentials');
-    commandParser.add('passthrough', 'File to where to find the OpenVPN configuration');
-    commandParser.add('user', 'User to be substituted to before opening the tunnel');
-    commandParser.add('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+    commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
+    commandParser.option('passthrough', 'File to where to find the OpenVPN configuration');
+    commandParser.option('user', 'User to be substituted to before opening the tunnel');
+    commandParser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
 
     const help = commandParser.help();
 
@@ -206,11 +206,11 @@ describe('Command Parser', () => {
   it('should display the help correctly with same first letter arguments', () => {
     const commandParser: CommandParser = new CommandParser();
 
-    commandParser.add('credentials', 'File to where to find the OpenVPN credentials');
-    commandParser.add('configuration', 'File to where to find the OpenVPN configuration');
-    commandParser.add('user', 'User to be substituted to before opening the tunnel');
-    commandParser.add('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.add('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+    commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
+    commandParser.option('configuration', 'File to where to find the OpenVPN configuration');
+    commandParser.option('user', 'User to be substituted to before opening the tunnel');
+    commandParser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
 
     const help = commandParser.help();
 
