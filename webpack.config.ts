@@ -12,7 +12,8 @@ export default ({ development, production }: CommandOptions) => ({
 
   output: {
     path: resolve(''),
-    filename: 'index.js'
+    filename: 'index.js',
+    libraryTarget: 'commonjs'
   },
 
   module: {
