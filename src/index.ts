@@ -75,6 +75,7 @@ class CommandParser {
           if (option.noValueExpected === NO_VALUE_EXPECTED) {
             provided[option.name] = 'yes';
             found = true;
+            break;
           } else {
             const next = parameters[index + 1];
 
@@ -82,6 +83,7 @@ class CommandParser {
               provided[option.name] = next;
               index += 1;
               found = true;
+              break;
             }
           }
         }
