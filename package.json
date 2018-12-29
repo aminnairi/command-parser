@@ -4,10 +4,19 @@
   "description": "Command Line Parser",
   "main": "index.js",
   "nyc": {
-    "extension": [".ts"],
-    "exclude": ["**/*.d.ts", "**/*.config.ts", "**/*.js", "**/*.spec.ts"],
-    "reporter": ["text"],
-    "all": true  
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.config.ts",
+      "**/*.js",
+      "**/*.spec.ts"
+    ],
+    "reporter": [
+      "text"
+    ],
+    "all": true
   },
   "scripts": {
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
