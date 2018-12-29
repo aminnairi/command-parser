@@ -115,7 +115,7 @@ class CommandParser {
     return provided;
   }
 
-  help() {
+  help(): string {
     let string = 'OPTIONS';
 
     for (const option of this.options) {
