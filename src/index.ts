@@ -81,8 +81,7 @@ class CommandParser {
 
       if (parameter === '--help' || parameter === '-h') {
         console.log(this.help());
-
-        process.exit(0);
+        break;
       }
 
       if (
@@ -112,15 +111,15 @@ class CommandParser {
             provided[option.name] = 'yes';
             found = true;
             break;
-          } else {
-            const next = parameters[index + 1];
+          }
 
-            if (next) {
-              provided[option.name] = next;
-              index += 1;
-              found = true;
-              break;
-            }
+          const next = parameters[index + 1];
+
+          if (next) {
+            provided[option.name] = next;
+            index += 1;
+            found = true;
+            break;
           }
         }
       }
