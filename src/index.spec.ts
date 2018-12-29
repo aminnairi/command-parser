@@ -208,4 +208,116 @@ describe('Command Parser', () => {
 
     expect(options).to.be.equal(expected);
   });
+
+  it('should parse single-dash single-token mixed arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('passthrough', 'Tunel to use');
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '-stc',
+      '/etc/openvpn/cilent/credentials.txt',
+      '-p',
+      '/etc/openvpn/cilent/config.ovpn'
+    ]));
+
+    const expected: string = JSON.stringify({
+      secure: 'yes',
+      tcp: 'yes',
+      credentials: '/etc/openvpn/cilent/credentials.txt',
+      passthrough: '/etc/openvpn/cilent/config.ovpn'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse single-dash single-token mixed arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('passthrough', 'Tunel to use');
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/openvpn.conf',
+      '-stc',
+      '/etc/openvpn/cilent/credentials.txt',
+      '-p',
+      '/etc/openvpn/cilent/config.ovpn'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/openvpn.conf',
+      secure: 'yes',
+      tcp: 'yes',
+      credentials: '/etc/openvpn/cilent/credentials.txt',
+      passthrough: '/etc/openvpn/cilent/config.ovpn'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse mixed-dash mixed-token mixed arguments', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('passthrough', 'Tunel to use');
+    commandParser.add('user', 'User to substitue to');
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '-stc',
+      '/etc/openvpn/cilent/credentials.txt',
+      '-p',
+      '/etc/openvpn/cilent/config.ovpn',
+      '--user',
+      'arch'
+    ]));
+
+    const expected: string = JSON.stringify({
+      secure: 'yes',
+      tcp: 'yes',
+      credentials: '/etc/openvpn/cilent/credentials.txt',
+      passthrough: '/etc/openvpn/cilent/config.ovpn',
+      user: 'arch'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
+
+  it('should parse mixed-dash mixed-token mixed arguments with unforseen argument', () => {
+    const commandParser: CommandParser = new CommandParser();
+
+    commandParser.add('credentials', 'Credentials');
+    commandParser.add('passthrough', 'Tunel to use');
+    commandParser.add('user', 'User to substitue to');
+    commandParser.add('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    commandParser.add('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+
+    const options: string = JSON.stringify(commandParser.parse([
+      '/etc/openvpn/client/openvpn.conf',
+      '-stc',
+      '/etc/openvpn/cilent/credentials.txt',
+      '-p',
+      '/etc/openvpn/cilent/config.ovpn',
+      '--user',
+      'arch'
+    ]));
+
+    const expected: string = JSON.stringify({
+      argument: '/etc/openvpn/client/openvpn.conf',
+      secure: 'yes',
+      tcp: 'yes',
+      credentials: '/etc/openvpn/cilent/credentials.txt',
+      passthrough: '/etc/openvpn/cilent/config.ovpn',
+      user: 'arch'
+    });
+
+    expect(options).to.be.equal(expected);
+  });
 });
