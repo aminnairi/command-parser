@@ -3,8 +3,14 @@
   "version": "0.0.2",
   "description": "Command Line Parser",
   "main": "index.js",
+  "nyc": {
+    "extension": [".ts"],
+    "exclude": ["**/*.d.ts", "**/*.config.ts", "**/*.js", "**/*.spec.ts"],
+    "reporter": ["text"],
+    "all": true  
+  },
   "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
     "mutations": "stryker run --mutate src/index.ts",
     "development": "webpack --env.development",
     "production": "webpack --env.production"
@@ -31,6 +37,7 @@
     "@types/webpack": "^4.4.22",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "prettier": "^1.15.3",
     "prettier-loader": "^2.1.1",
     "ts-loader": "^5.3.2",
