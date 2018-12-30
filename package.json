@@ -25,6 +25,7 @@
   },
   "scripts": {
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "development": "webpack --env.development",
     "production": "webpack --env.production"
   },
@@ -49,6 +50,7 @@
     "@types/node": "^10.12.18",
     "@types/webpack": "^4.4.22",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^13.1.0",
     "prettier": "^1.15.3",
