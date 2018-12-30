@@ -199,6 +199,24 @@ $ node index.js --meme conceited-reaction so Java is not free anymore huh
 Here is the good stuff you made!
 ```
 
+### Use multiple options with a single token
+
+```javascript
+parser.option('awesome', 'Make an awesome meme', NO_VALUE_EXPECTED);
+parser.option('wow', 'Doge-approve this meme', NO_VALUE_EXPECTED);
+parser.option('meme', 'The meme template to be used');
+
+console.log(parser.parse());
+```
+
+```console
+$ node index.js -awm conceited-reaction so Java is not free anymore huh
+{ awesome: 'yes',
+  wow: 'yes',
+  meme: 'conceited-reaction',
+  argument: 'so Java is not free anymore huh' }
+```
+
 ## Contributing
 
 Contributions are very welcome! See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for more informations on how you can help.
