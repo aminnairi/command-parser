@@ -41,7 +41,7 @@ $ npm install @aminnairi/command-parser
 ```
 *Note: you can install it as a development dependency (tough it is not recommended for command line interface based packages if you are not using a compiler).*
 ```console
-npm install --save-dev @aminnairi/command-parser
+$ npm install --save-dev @aminnairi/command-parser
 ```
 **7. Create your `index.js` file.**
 ```console
