@@ -129,5 +129,73 @@ $ node index.js
 {}
 ```
 
+### Parse something other than the command line arguments.
+
+```javascript
+parser.option('meme', 'The meme template to be used');
+parser.option('no-watermak', 'Remove the watermak', NO_VALUE_EXPECTED);
+
+const customArguments = [
+  '--meme',
+  'conceited-reaction',
+  '--no-watermak'
+];
+
+console.log(parser.parse(customArguments));
+```
+
+```console
+node index.js
+{ meme: 'conceited-reaction', 'no-watermak': 'yes' }
+```
+
+### Quickly tell if an argument is missing
+
+```javascript
+parser.option('meme', 'The meme template to be used');
+
+const commandLineArguments = parser.parse();
+
+if (!('argument' in commandLineArguments)) {
+  console.log('Hey! looks like you are missing the text...');
+} else {
+  console.log('Here is the good stuff you made!');
+}
+```
+
+```console
+$ node index.js --meme conceited-reaction
+Hey! looks like you are missing the text...
+$ node index.js --meme conceited-reaction so Java is not free anymore huh
+Here is the good stuff you made!
+```
+
+### Manually trigger the help
+
+```javascript
+parser.option('meme', 'The meme template to be used');
+
+const commandLineArguments = parser.parse();
+
+if (!('meme' in commandLineArguments)) {
+  console.log(parser.help());
+} else {
+  console.log('Here is the good stuff you made!');
+}
+```
+
+```console
+$ node index.js so Java is not free anymore huh
+OPTIONS
+
+    -h, --help
+        Display this message
+
+    -m, --meme
+        The meme template to be used
+$ node index.js --meme conceited-reaction so Java is not free anymore huh
+Here is the good stuff you made!
+```
+
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
