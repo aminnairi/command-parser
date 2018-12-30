@@ -25,7 +25,6 @@
   },
   "scripts": {
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "mutations": "stryker run --mutate src/index.ts",
     "development": "webpack --env.development",
     "production": "webpack --env.production"
   },
