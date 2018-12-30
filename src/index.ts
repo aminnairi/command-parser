@@ -1,19 +1,19 @@
 'use strict';
 
-interface Options {
+interface IOptions {
   description: string;
   long: string;
   name: string;
-  noValueExpected: Boolean;
+  noValueExpected: boolean;
   short: string | undefined;
 }
 
-interface CommandParserOptions {
+interface ICommandParserOptions {
   [key: string]: string;
 }
 
 class CommandParser {
-  private options: Options[];
+  private options: IOptions[];
 
   constructor() {
     this.options = [
@@ -27,7 +27,7 @@ class CommandParser {
     ];
   }
 
-  option(
+  public option(
     name: string,
     description: string,
     noValueExpected: boolean = false
@@ -50,7 +50,7 @@ class CommandParser {
       );
     }
 
-    let short: Options['short'] = `-${name[0]}`;
+    let short: IOptions['short'] = `-${name[0]}`;
 
     for (const option of this.options) {
       if (option.short === short) {
@@ -69,7 +69,9 @@ class CommandParser {
     return this;
   }
 
-  parse(parameters: string[] = process.argv.slice(2)): CommandParserOptions {
+  public parse(
+    parameters: string[] = process.argv.slice(2)
+  ): ICommandParserOptions {
     if (!Array.isArray(parameters)) {
       throw new TypeError(
         '[CommandParser][parse] first argument must be of type array'
@@ -84,7 +86,7 @@ class CommandParser {
       }
     }
 
-    const provided: CommandParserOptions = {};
+    const provided: ICommandParserOptions = {};
 
     for (let index: number = 0; index < parameters.length; index++) {
       const parameter: string = parameters[index];
@@ -135,10 +137,12 @@ class CommandParser {
       }
 
       if (!found) {
-        if ('argument' in provided) {
-          provided['argument'] += ` ${parameter}`;
+        const argument = 'argument';
+
+        if (argument in provided) {
+          provided[argument] += ` ${parameter}`;
         } else {
-          provided['argument'] = parameter;
+          provided[argument] = parameter;
         }
       }
     }
@@ -146,22 +150,22 @@ class CommandParser {
     return provided;
   }
 
-  help(): string {
-    let string: string = 'OPTIONS';
+  public help(): string {
+    let message: string = 'OPTIONS';
 
     for (const option of this.options) {
-      string += '\n\n    ';
+      message += '\n\n    ';
 
       if (option.short) {
-        string += `${option.short}, ${option.long}`;
+        message += `${option.short}, ${option.long}`;
       } else {
-        string += `${option.long}`;
+        message += `${option.long}`;
       }
 
-      string += `\n        ${option.description}`;
+      message += `\n        ${option.description}`;
     }
 
-    return string;
+    return message;
   }
 }
 
