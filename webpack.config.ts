@@ -22,7 +22,10 @@ export default ({ development, production }: CommandOptions) => ({
         enforce: 'pre',
         test: /\.ts$/,
         exclude: /node_modules/,
-        loader: 'prettier-loader'
+        use: [
+          'prettier-loader',
+          'tslint-loader'
+        ]
       },
       {
         test: /\.ts$/,
