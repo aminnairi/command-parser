@@ -199,5 +199,9 @@ $ node index.js --meme conceited-reaction so Java is not free anymore huh
 Here is the good stuff you made!
 ```
 
+## Contributing
+
+Contributions are very welcome! See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for more informations on how you can help.
+
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
