@@ -3,6 +3,11 @@
   "version": "0.0.4",
   "description": "Command Line Parser",
   "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "nyc": {
     "extension": [
       ".ts"
