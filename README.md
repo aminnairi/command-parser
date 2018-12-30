@@ -1,6 +1,6 @@
 # command-parser
 
-![](https://img.shields.io/github/issues/aminnairi/command-parser.svg?style=square&logo=github) ![](https://img.shields.io/github/license/aminnairi/command-parser.svg?style=square&logo=github) ![](https://img.shields.io/npm/dt/@aminnairi/command-parser.svg?logo=npm&style=square) ![](https://img.shields.io/npm/v/@aminnairi/command-parser.svg?style=square&logo=npm)
+[![](https://img.shields.io/github/issues/aminnairi/command-parser.svg?style=square&logo=github)](https://github.com/aminnairi/command-parser/issues/) [![](https://img.shields.io/github/license/aminnairi/command-parser.svg?style=square&logo=github)](./LICENSE) [![](https://img.shields.io/npm/dt/@aminnairi/command-parser.svg?logo=npm&style=square)](https://www.npmjs.com/package/@aminnairi/command-parser) [![](https://img.shields.io/npm/v/@aminnairi/command-parser.svg?style=square&logo=npm)](https://www.npmjs.com/package/@aminnairi/command-parser)
 
 Command Line Arguments Parser
 
