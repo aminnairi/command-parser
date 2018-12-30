@@ -25,11 +25,11 @@ $ mkdir my-project
 $ cd my-project
 ```
 *Note: replace `my-project` with the name of your project.*
-**5. Initialize a brand-new NPM project.**
+**5. Initialize a brand-new [NPM][npm] project.**
 ```console
 $ npm init
 ```
-*Note: you can initialize a brand-new NPM project without answering questions.*
+*Note: you can initialize a brand-new [NPM][npm] project without answering questions.*
 ```console
 $ npm init --yes
 ```
