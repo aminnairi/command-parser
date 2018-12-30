@@ -62,7 +62,7 @@ import { CommandParser, NO_VALUE_EXPECTED } from '@aminnairi/command-parser';
 const parser = new CommandParser();
 ```
 *Note: you can name the instance with whatever name you would like. `parser` is just a convention.*
-**10. Add an option to you command line interface.**
+**10. Add an option and his description to you command line interface.**
 ```javascript
 parser.option('meme', 'The meme template to be used');
 ```
@@ -75,6 +75,49 @@ console.log(parser.parse());
 $ node index.js --meme conceited-reaction so Java is not free anymore huh
 { meme: 'conceited-reaction',
   argument: 'so Java is not free anymore huh' }
+```
+**13. Get help from the command line.**
+```console
+$ node index.js --help
+OPTIONS
+
+    -h, --help
+        Display this message
+
+    -m, --meme
+        The meme template to be used
+```
+
+## Usage
+
+### Argument with value
+
+```javascript
+parser.option('meme', 'The meme template to be used');
+
+console.log(parser.parse());
+```
+
+```console
+$ node index.js --meme conceited-reaction
+{ meme: 'conceited-reaction' }
+$ node index.js
+{}
+```
+
+### Argument without value
+
+```javascript
+parser.option('no-watermak', 'Remove the watermak', NO_VALUE_EXPECTED);
+
+console.log(parser.parse());
+```
+
+```console
+$ node index.js --no-watermak
+{ 'no-watermak': 'yes' }
+$ node index.js
+{}
 ```
 
 [npm]: https://www.npmjs.com/
