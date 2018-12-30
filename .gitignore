@@ -12,3 +12,6 @@ node_modules
 
 # Istanbul reporting
 .nyc_output
+
+# coverage credentials
+.coveralls.yml
