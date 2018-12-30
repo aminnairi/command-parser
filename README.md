@@ -221,7 +221,7 @@ $ node index.js -awm conceited-reaction so Java is not free anymore huh
 
 Contributions are very welcome! See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for more informations on how you can help.
 
-![](https://i.ibb.co/HpYKrMX/conceited.png)
+![](https://i.ibb.co/b2kCLSY/itsfreerealestate.png)
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
