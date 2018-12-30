@@ -20,11 +20,13 @@ $ npm --version
 $ mkdir my-project
 ```
 *Note: replace `my-project` with the name of your project.*
+
 **4. Move into the project directory you previously created.**
 ```console
 $ cd my-project
 ```
 *Note: replace `my-project` with the name of your project.*
+
 **5. Initialize a brand-new [NPM][npm] project.**
 ```console
 $ npm init
