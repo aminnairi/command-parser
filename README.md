@@ -87,7 +87,7 @@ OPTIONS
     -h, --help
         Display this message
 
-    -m, --meme
+    -m, --meme [MEME]
         The meme template to be used
 ```
 
@@ -195,7 +195,7 @@ OPTIONS
     -h, --help
         Display this message
 
-    -m, --meme
+    -m, --meme [MEME]
         The meme template to be used
 $ node index.js --meme conceited-reaction so Java is not free anymore huh
 Here is the good stuff you made!
