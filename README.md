@@ -229,11 +229,7 @@ $ npm install --save-dev typescript ts-node @aminnairi/command-parser
 // index.ts
 'use strict';
 
-import {
-  CommandParser,
-  NO_VALUE_EXPECTED,
-  ICommandParserOptions
-} from '@aminnairi/command-parser';
+import { CommandParser, NO_VALUE_EXPECTED, ICommandParserOptions } from '@aminnairi/command-parser';
 
 const parser: CommandParser = new CommandParser();
 
