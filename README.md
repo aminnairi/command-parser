@@ -73,7 +73,7 @@ parser.option('meme', 'The meme template to be used');
 ```javascript
 console.log(parser.parse());
 ```
-**12. Test you command line interface.**
+**12. Test your command line interface.**
 ```console
 $ node index.js --meme conceited-reaction so Java is not free anymore huh
 { meme: 'conceited-reaction',
