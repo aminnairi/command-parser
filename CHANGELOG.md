@@ -1,3 +1,26 @@
+**0.1.0**
+- Added download counter badge in the documentation.
+- Added shields logos whenever possible.
+- Added shields for the NPM package latest version.
+- Added relevant links for the badges.
+- Added a changelog file.
+- Reduced the size of the NPM package tarball by whitelisting only the necessary files.
+- Added a link to the contribution file in the documentation.
+- Re-thinked the installation steps.
+- Added usage examples in the documentation.
+- Added advantages in the documentation.
+- Linked back to the official NPM documentation for all references in the documentation.
+- Fixed various line return issue for the steps title in the documentation.
+- Fixed syntax highlighting.
+- Removed unecessary script for stryker in the `package.json` file.
+- Added coverage badge.
+- Added TypeScript linting.
+- Exported the interface for the parser options.
+- Added instructions on how to use the API with TypeScript in the documentation.
+- Fixed typos.
+- Added NPM environment-agnostic script.
+- Implemented the double-dash-equal syntax.
+
 **0.0.4**
 - Added MIT license file.
 - Added license + issue badges.
