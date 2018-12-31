@@ -8,11 +8,11 @@ interface IOptions {
   short: string | undefined;
 }
 
-interface ICommandParserOptions {
+export interface ICommandParserOptions {
   [key: string]: string;
 }
 
-class CommandParser {
+export class CommandParser {
   private options: IOptions[];
 
   constructor() {
@@ -169,6 +169,4 @@ class CommandParser {
   }
 }
 
-const NO_VALUE_EXPECTED: boolean = true;
-
-export { CommandParser, NO_VALUE_EXPECTED };
+export const NO_VALUE_EXPECTED: boolean = true;
