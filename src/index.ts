@@ -189,6 +189,10 @@ export class CommandParser {
         message += `${option.long}`;
       }
 
+      if (!option.noValueExpected) {
+        message += ` [${option.name.toUpperCase()}]`;
+      }
+
       message += `\n        ${option.description}`;
     }
 
