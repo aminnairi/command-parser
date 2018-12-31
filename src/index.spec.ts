@@ -202,13 +202,13 @@ describe('Command Parser', () => {
     -h, --help
         Display this message
 
-    -c, --credentials
+    -c, --credentials [CREDENTIALS]
         File to where to find the OpenVPN credentials
 
-    -p, --passthrough
+    -p, --passthrough [PASSTHROUGH]
         File to where to find the OpenVPN configuration
 
-    -u, --user
+    -u, --user [USER]
         User to be substituted to before opening the tunnel
 
     -s, --secure
@@ -237,16 +237,16 @@ describe('Command Parser', () => {
     -h, --help
         Display this message
 
-    -c, --credentials
+    -c, --credentials [CREDENTIALS]
         File to where to find the OpenVPN credentials
 
-    -C, --configuration
+    -C, --configuration [CONFIGURATION]
         File to where to find the OpenVPN configuration
 
-    --command
+    --command [COMMAND]
         Command to use instead of OpenVPN
 
-    -u, --user
+    -u, --user [USER]
         User to be substituted to before opening the tunnel
 
     -s, --secure
