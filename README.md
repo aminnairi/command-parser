@@ -96,7 +96,7 @@ OPTIONS
 1. Tested with a goal of 100% of coverage for the unit testing.
 1. Install, use and get ready for production in no time.
 1. More time for your business logic than the command parsing logic.
-1. POSIX-compliant command parsing.
+1. [POSIX-compliant](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html) command parsing (double-dash-equal syntax not implemented yet).
 1. Open-source and open to contribution from the community to make it better
 1. Meme example.
 
