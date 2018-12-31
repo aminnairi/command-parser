@@ -218,6 +218,25 @@ $ node index.js -awm conceited-reaction so Java is not free anymore huh
   argument: 'so Java is not free anymore huh' }
 ```
 
+### Multiple options chaining
+
+```javascript
+parser
+  .option('awesome', 'Make an awesome meme', NO_VALUE_EXPECTED);
+  .option('wow', 'Doge-approve this meme', NO_VALUE_EXPECTED);
+  .option('meme', 'The meme template to be used');
+
+console.log(parser.parse());
+```
+
+```console
+$ node index.js -awm conceited-reaction so Java is not free anymore huh
+{ awesome: 'yes',
+  wow: 'yes',
+  meme: 'conceited-reaction',
+  argument: 'so Java is not free anymore huh' }
+```
+
 ### About TypeScript
 
 TypeScript adds more type checking at transpile time to prevent development errors. I decided to write my code entirely in TypeScript so that you can take advantage of the type checking as well (but you do not have to use TypeScript and can totally use this API with plain JavaScript as well). The type definition file is [`./index.d.ts`](./index.d.ts) and is automatically imported when using the following syntax.
