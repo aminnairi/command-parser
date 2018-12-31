@@ -98,6 +98,7 @@ OPTIONS
 1. More time for your business logic than the command parsing logic.
 1. [POSIX-compliant](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html) command parsing.
 1. Open-source and open to contribution from the community to make it better
+1. TypeScript type hinting support.
 1. Meme example.
 
 ## Usage
