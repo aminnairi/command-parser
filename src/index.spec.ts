@@ -354,4 +354,22 @@ describe('Command Parser', () => {
 
     expect(result).to.be.equal(expected);
   });
+
+  it('should add the parameter with the double-dash-equal syntax', () => {
+    const parser = new CommandParser();
+
+    parser.option('file', 'File to be used for the OpenVPN connection');
+
+    const result = JSON.stringify(parser.parse([
+      '--file=/etc/openvpn/client/config.ovpn',
+      '/etc/openvpn/client/openvpn.conf'
+    ]));
+
+    const expectation = JSON.stringify({
+      file: '/etc/openvpn/client/config.ovpn',
+      argument: '/etc/openvpn/client/openvpn.conf'
+    });
+
+    expect(result).to.be.equal(expectation);
+  });
 });

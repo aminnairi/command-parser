@@ -134,6 +134,13 @@ export class CommandParser {
             break;
           }
         }
+
+        if (parameter.startsWith(option.long) && parameter.includes('=')) {
+          const value = parameter.split('=')[1];
+          provided[option.name] = value;
+          found = true;
+          break;
+        }
       }
 
       if (!found) {
