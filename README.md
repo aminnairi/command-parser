@@ -64,6 +64,7 @@ import { CommandParser, NO_VALUE_EXPECTED } from '@aminnairi/command-parser';
 const parser = new CommandParser();
 ```
 *Note: you can name the instance with whatever name you would like. `parser` is just a convention.*
+
 **10. Add an option and his description to you command line interface.**
 ```javascript
 parser.option('meme', 'The meme template to be used');
