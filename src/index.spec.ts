@@ -225,6 +225,7 @@ describe('Command Parser', () => {
 
     commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
     commandParser.option('configuration', 'File to where to find the OpenVPN configuration');
+    commandParser.option('command', 'Command to use instead of OpenVPN');
     commandParser.option('user', 'User to be substituted to before opening the tunnel');
     commandParser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
@@ -239,8 +240,11 @@ describe('Command Parser', () => {
     -c, --credentials
         File to where to find the OpenVPN credentials
 
-    --configuration
+    -C, --configuration
         File to where to find the OpenVPN configuration
+
+    --command
+        Command to use instead of OpenVPN
 
     -u, --user
         User to be substituted to before opening the tunnel
