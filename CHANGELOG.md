@@ -1,3 +1,11 @@
+**0.1.1**
+- Automatic command letter assignation for commands meaning that a command with the same letter will take the lower/upper case whether it is available or will be assigned the long syntax only.
+- Added tests for the automatic command letter assignation.
+- Advantages is now an unordered list.
+- Added TypeScript advantage.
+- Added a hint in the documentation triggered by the help() method or the `--help` & `-h` arguments when the argument accept a value.
+- Updated units tests to expect the new help output.
+
 **0.1.0**
 - Added download counter badge in the documentation.
 - Added shields logos whenever possible.
