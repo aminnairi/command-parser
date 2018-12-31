@@ -219,7 +219,7 @@ $ node index.js -awm conceited-reaction so Java is not free anymore huh
 
 ### TypeScript
 
-TypeScript adds more type checking at transpile time to prevent development errors. I decided to write my code entirely in TypeScript so that you can take advantage of the type checking as well. The type definition file is [`./index.d.ts`](./index.d.ts) and is automatically imported when using the following syntax.
+TypeScript adds more type checking at transpile time to prevent development errors. I decided to write my code entirely in TypeScript so that you can take advantage of the type checking as well (but you do not have to use TypeScript and can totally use this API with plain JavaScript as well). The type definition file is [`./index.d.ts`](./index.d.ts) and is automatically imported when using the following syntax.
 
 ```console
 $ npm install --save-dev typescript ts-node @aminnairi/command-parser
