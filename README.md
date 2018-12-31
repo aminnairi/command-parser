@@ -217,6 +217,39 @@ $ node index.js -awm conceited-reaction so Java is not free anymore huh
   argument: 'so Java is not free anymore huh' }
 ```
 
+### TypeScript
+
+TypeScript adds more type checking at transpile time to prevent development errors. I decided to write my code entirely in TypeScript so that you can take advantage of the type checking as well. The type definition file is [`./index.d.ts`](./index.d.ts) and is automatically imported when using the following syntax.
+
+```console
+$ npm install --save-dev typescript ts-node @aminnairi/command-parser
+```
+
+```typescript
+// index.ts
+'use strict';
+
+import {
+  CommandParser,
+  NO_VALUE_EXPECTED,
+  ICommandParserOptions
+} from '@aminnairi/command-parser';
+
+const parser: CommandParser = new CommandParser();
+
+parser.option('wow', 'Doge-approve this meme', NO_VALUE_EXPECTED);
+parser.option('meme', 'The meme template to be used');
+
+const parsedArguments: ICommandParserOptions = parser.parse();
+
+console.log(parsedArguments);
+```
+
+```console
+$ ./node_modules/.bin/ts-node index.ts -wm conceited-reaction
+{ wow: 'yes', meme: 'conceited-reaction' }
+```
+
 ## Contributing
 
 Contributions are very welcome! See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for more informations on how you can help.
