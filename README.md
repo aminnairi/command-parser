@@ -39,7 +39,7 @@ $ npm init --yes
 ```console
 $ npm install @aminnairi/command-parser
 ```
-*Note: you can install it as a development dependency (tough it is not recommended for command line interface based packages if you are not using a compiler).*
+*Note: you can install it as a development dependency (though it is not recommended for command line interface based packages if you are not using a compiler).*
 ```console
 $ npm install --save-dev @aminnairi/command-parser
 ```
