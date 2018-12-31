@@ -50,12 +50,32 @@ export class CommandParser {
       );
     }
 
-    let short: IOptions['short'] = `-${name[0]}`;
+    let short = undefined;
+    let shortLowerCaseAvailable = true;
+    let shortUpperCaseAvailable = true;
+
+
+    const shortLowerCase: IOptions['short'] = `-${name[0].toLowerCase()}`;
+    const shortUpperCase: IOptions['short'] = `-${name[0].toUpperCase()}`;
 
     for (const option of this.options) {
-      if (option.short === short) {
-        short = undefined;
+      if (option.short === shortLowerCase) {
+        shortLowerCaseAvailable = false;
+        break;
       }
+    }
+
+    for (const option of this.options) {
+      if (option.short === shortUpperCase) {
+        shortUpperCaseAvailable = false;
+        break;
+      }
+    }
+
+    if (shortLowerCaseAvailable) {
+      short = shortLowerCase;
+    } else if (shortUpperCaseAvailable) {
+      short = shortUpperCase;
     }
 
     this.options.push({
