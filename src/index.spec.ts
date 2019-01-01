@@ -21,7 +21,7 @@ const consoleLogOutputCorrectly = (callback: () => {}, message: string): boolean
 
 describe('Command Parser', () => {
   it('should parse double-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('tunel', 'Tunel');
@@ -44,7 +44,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse double-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -65,7 +65,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('tunel', 'Tunel');
@@ -88,7 +88,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -109,7 +109,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -129,7 +129,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('passthrough', 'Tunel to use');
@@ -156,7 +156,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse mixed-dash mixed-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('passthrough', 'Tunel to use');
@@ -187,7 +187,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly formated from the arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
     commandParser.option('passthrough', 'File to where to find the OpenVPN configuration');
@@ -201,6 +201,9 @@ describe('Command Parser', () => {
 
     -h, --help
         Display this message
+
+    -v, --version
+        Display the name and version of this command
 
     -c, --credentials [CREDENTIALS]
         File to where to find the OpenVPN credentials
@@ -221,7 +224,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly with same first letter arguments', () => {
-    const commandParser: CommandParser = new CommandParser();
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
 
     commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
     commandParser.option('configuration', 'File to where to find the OpenVPN configuration');
@@ -236,6 +239,9 @@ describe('Command Parser', () => {
 
     -h, --help
         Display this message
+
+    -v, --version
+        Display the name and version of this command
 
     -c, --credentials [CREDENTIALS]
         File to where to find the OpenVPN credentials
@@ -259,42 +265,42 @@ describe('Command Parser', () => {
   });
 
   it('should throw an error when providing a non-string as the first argument of the option method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     // @ts-ignore
     expect(() => parser.option(123, 'Configuration', NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] first argument should be of type string');
   });
 
   it('should throw an error when providing a non-string as the second argument of the option method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     // @ts-ignore
     expect(() => parser.option('configuration', 123, NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] second argument should be of type string');
   });
 
   it('should throw an error when providing a non-boolean as the third argument of the option method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     // @ts-ignore
     expect(() => parser.option('configuration', 'Configuration', 'NO_VALUE_EXPECTED')).to.throw('[CommandParser][option] third argument should be of type boolean');
   });
 
   it('should throw an error when providing a non-array as the first argument of the parse method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     // @ts-ignore
     expect(() => parser.parse({})).to.throw('[CommandParser][parse] first argument must be of type array');
   });
 
   it('should throw an error if one or more element of the first argument is a non-string for the parse method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     // @ts-ignore
     expect(() => parser.parse([123])).to.throw('[CommandParser][parse] all elements of the first argument must be of type string');
   });
 
   it('should add all the unexpected option in the argument property for the method parse', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     const options = JSON.stringify(parser.parse([
       '--unexpected',
@@ -309,18 +315,51 @@ describe('Command Parser', () => {
   });
 
   it('should trigger the help when using the --help parameter for the parse method', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     const consoleCalled = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `OPTIONS
 
     -h, --help
-        Display this message`);
+        Display this message
+
+    -v, --version
+        Display the name and version of this command`);
 
     expect(consoleCalled).to.be.true;
   });
 
+  it('should trigger the help when using the -h parameter for the parse method', () => {
+    const parser = new CommandParser('parser', '1.0.0');
+
+    const consoleCalled = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `OPTIONS
+
+    -h, --help
+        Display this message
+
+    -v, --version
+        Display the name and version of this command`);
+
+    expect(consoleCalled).to.be.true;
+  });
+
+  it('should display the name and version using the --version parameter', () => {
+    const parser = new CommandParser('parser', '1.0.0');
+
+    const consoleCalled = consoleLogOutputCorrectly(() => parser.parse([ '--version' ]), 'parser version 1.0.0');
+    
+    expect(consoleCalled).to.be.true;
+  });
+
+  it('should display the name and version using the -v parameter', () => {
+    const parser = new CommandParser('parser', '1.0.0');
+
+    const consoleCalled = consoleLogOutputCorrectly(() => parser.parse([ '-v' ]), 'parser version 1.0.0');
+    
+    expect(consoleCalled).to.be.true;
+  });
+
   it('should use the fallback process argument instead of an array for the method parse', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     process.argv = [
       '/usr/local/bin/node',
@@ -341,7 +380,7 @@ describe('Command Parser', () => {
   });
 
   it('should not append the value if a parameter is missing its value', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     parser.option('secure', 'Secure the tunel', NO_VALUE_EXPECTED);
     parser.option('file', 'File to be used for the OpenVPN connection');
@@ -360,7 +399,7 @@ describe('Command Parser', () => {
   });
 
   it('should add the parameter with the double-dash-equal syntax', () => {
-    const parser = new CommandParser();
+    const parser = new CommandParser('parser', '1.0.0');
 
     parser.option('file', 'File to be used for the OpenVPN connection');
 
@@ -375,5 +414,25 @@ describe('Command Parser', () => {
     });
 
     expect(result).to.be.equal(expectation);
+  });
+
+  it('should throw an error when instanciating the class without a name', () => {
+    //@ts-ignore
+    expect(() => new CommandParser()).to.throw('[CommandParser][constructor] first argument is mandatory');
+  });
+
+  it('should throw an error when instanciating the class without a string name', () => {
+    //@ts-ignore
+    expect(() => new CommandParser(123)).to.throw('[CommandParser][constructor] first argument should be of type string');
+  });
+
+  it('should throw an error when instanciating the class without a version', () => {
+    //@ts-ignore
+    expect(() => new CommandParser('name')).to.throw('[CommandParser][constructor] second argument is mandatory');
+  });
+
+  it('should throw an error when instanciating the class without a string version', () => {
+    //@ts-ignore
+    expect(() => new CommandParser('name', 123)).to.throw('[CommandParser][constructor] second argument should be of type string');
   });
 });
