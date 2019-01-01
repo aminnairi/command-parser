@@ -1,4 +1,4 @@
-**0.1.1**
+**0.2.0**
 - Automatic command letter assignation for commands meaning that a command with the same letter will take the lower/upper case whether it is available or will be assigned the long syntax only.
 - Added tests for the automatic command letter assignation.
 - Advantages is now an unordered list.
