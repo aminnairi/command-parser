@@ -54,7 +54,6 @@ export class CommandParser {
     let shortLowerCaseAvailable = true;
     let shortUpperCaseAvailable = true;
 
-
     const shortLowerCase: IOptions['short'] = `-${name[0].toLowerCase()}`;
     const shortUpperCase: IOptions['short'] = `-${name[0].toUpperCase()}`;
 
