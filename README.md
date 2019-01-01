@@ -93,13 +93,13 @@ OPTIONS
 
 ## Advantages
 
-- Tested with a goal of 100% of coverage for the unit testing.
-- Install, use and get ready for production in no time.
-- More time for your business logic than the command parsing logic.
-- [POSIX-compliant](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html) command parsing.
-- Open-source and open to contribution from the community to make it better
-- TypeScript type hinting support.
-- Meme example.
+- [x] Tested with a goal of 100% of coverage for the unit testing.
+- [x] Install, use and get ready for production in no time.
+- [x] More time for your business logic than the command parsing logic.
+- [x] [POSIX-compliant](https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html) command parsing.
+- [x] Open-source and open to contribution from the community to make it better
+- [x] TypeScript type hinting support.
+- [x] Meme example.
 
 ## Usage
 
