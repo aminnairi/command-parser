@@ -10,6 +10,8 @@ branches:
   only:
     - "master"
 
-# prevent fetch useless Git history
 git:
+  # prevent fetch useless Git history
   depth: false
+  # prevent displaying unecessary git clone logs
+  quiet: true
