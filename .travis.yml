@@ -15,3 +15,5 @@ git:
   depth: false
   # prevent displaying unecessary git clone logs
   quiet: true
+  # prevent fetching submodules
+  submodules: false
