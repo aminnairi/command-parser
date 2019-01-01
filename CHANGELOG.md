@@ -6,6 +6,7 @@
 - Added a hint in the documentation triggered by the help() method or the `--help` & `-h` arguments when the argument accept a value.
 - Updated units tests to expect the new help output.
 - Updated the documentation about the help method (according to the previous changes).
+- Enabled Travis CI
 
 **0.1.0**
 - Added download counter badge in the documentation.
