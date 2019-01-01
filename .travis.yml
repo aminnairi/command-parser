@@ -5,6 +5,11 @@ language: node_js
 node_js:
   - "node"
 
+# triggering the build on branch master only
 branches:
   only:
     - "master"
+
+# prevent fetch useless Git history
+git:
+  depth: false
