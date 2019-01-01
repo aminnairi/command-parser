@@ -64,10 +64,12 @@ export class CommandParser {
       }
     }
 
-    for (const option of this.options) {
-      if (option.short === shortUpperCase) {
-        shortUpperCaseAvailable = false;
-        break;
+    if (!shortLowerCaseAvailable) {
+      for (const option of this.options) {
+        if (option.short === shortUpperCase) {
+          shortUpperCaseAvailable = false;
+          break;
+        }
       }
     }
 
