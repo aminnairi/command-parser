@@ -14,8 +14,25 @@ export interface ICommandParserOptions {
 
 export class CommandParser {
   private options: IOptions[];
+  private versionIdentifier: string;
+  private name: string;
 
-  constructor() {
+  constructor(name: string, versionIdentifier: string) {
+    if (name === undefined) {
+      throw new ReferenceError('[CommandParser][constructor] first argument is mandatory');
+    }
+
+    if (typeof name !== 'string') {
+      throw new TypeError('[CommandParser][constructor] first argument should be of type string');
+    }
+
+    if (versionIdentifier === undefined) {
+      throw new ReferenceError('[CommandParser][constructor] second argument is mandatory');
+    }
+
+    if (typeof versionIdentifier !== 'string') {
+      throw new TypeError('[CommandParser][constructor] second argument should be of type string');
+    }
     this.options = [
       {
         description: 'Display this message',
@@ -23,8 +40,17 @@ export class CommandParser {
         name: 'help',
         noValueExpected: true,
         short: '-h'
+      },
+      {
+        description: 'Display the name and version of this command',
+        long: '--version',
+        name: 'version',
+        noValueExpected: true,
+        short: '-v'
       }
     ];
+    this.name = name;
+    this.versionIdentifier = versionIdentifier;
   }
 
   public option(
@@ -117,6 +143,11 @@ export class CommandParser {
         break;
       }
 
+      if (parameter === '-v' || parameter === '--version') {
+        console.log(this.version());
+        break;
+      }
+
       if (
         parameter.startsWith('-') &&
         parameter[1] !== '-' &&
@@ -198,6 +229,10 @@ export class CommandParser {
     }
 
     return message;
+  }
+
+  public version(): string {
+    return `${this.name} version ${this.versionIdentifier}`;
   }
 }
 
