@@ -8,7 +8,7 @@ node_js:
 # triggering the build on branch master only
 branches:
   only:
-    - "master"
+    - master
 
 git:
   # prevent fetch useless Git history
