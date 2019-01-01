@@ -1,3 +1,6 @@
+# language to be used by Travis CI to run the tests
 language: node_js
+
+# Node.js version to be used when testing the project
 node_js:
   - "node"
