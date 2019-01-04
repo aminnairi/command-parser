@@ -19,19 +19,27 @@ export class CommandParser {
 
   constructor(name: string, versionIdentifier: string) {
     if (name === undefined) {
-      throw new ReferenceError('[CommandParser][constructor] first argument is mandatory');
+      throw new ReferenceError(
+        '[CommandParser][constructor] first argument is mandatory'
+      );
     }
 
     if (typeof name !== 'string') {
-      throw new TypeError('[CommandParser][constructor] first argument should be of type string');
+      throw new TypeError(
+        '[CommandParser][constructor] first argument should be of type string'
+      );
     }
 
     if (versionIdentifier === undefined) {
-      throw new ReferenceError('[CommandParser][constructor] second argument is mandatory');
+      throw new ReferenceError(
+        '[CommandParser][constructor] second argument is mandatory'
+      );
     }
 
     if (typeof versionIdentifier !== 'string') {
-      throw new TypeError('[CommandParser][constructor] second argument should be of type string');
+      throw new TypeError(
+        '[CommandParser][constructor] second argument should be of type string'
+      );
     }
     this.options = [
       {
@@ -77,14 +85,18 @@ export class CommandParser {
     }
 
     if (name === 'version') {
-      throw new Error('[CommandParser][option] "version" is not a valid option name');
+      throw new Error(
+        '[CommandParser][option] "version" is not a valid option name'
+      );
     }
 
     if (name === 'help') {
-      throw new Error('[CommandParser][option] "help" is not a valid option name');
+      throw new Error(
+        '[CommandParser][option] "help" is not a valid option name'
+      );
     }
 
-    let short = undefined;
+    let short;
     let shortLowerCaseAvailable = true;
     let shortUpperCaseAvailable = true;
 
