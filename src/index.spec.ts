@@ -435,4 +435,16 @@ describe('Command Parser', () => {
     //@ts-ignore
     expect(() => new CommandParser('name', 123)).to.throw('[CommandParser][constructor] second argument should be of type string');
   });
+
+  it('should throw an error when using "help" as an option name', () => {
+    const parser = new CommandParser('parser', '1.0.0');
+
+    expect(() => parser.option('help', 'Help')).to.throw('[CommandParser][option] "help" is not a valid option name')
+  });
+
+  it('should throw an error when using "version" as an option name', () => {
+    const parser = new CommandParser('parser', '1.0.0');
+
+    expect(() => parser.option('version', 'Version')).to.throw('[CommandParser][option] "version" is not a valid option name')
+  });
 });
