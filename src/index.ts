@@ -76,6 +76,14 @@ export class CommandParser {
       );
     }
 
+    if (name === 'version') {
+      throw new Error('[CommandParser][option] "version" is not a valid option name');
+    }
+
+    if (name === 'help') {
+      throw new Error('[CommandParser][option] "help" is not a valid option name');
+    }
+
     let short = undefined;
     let shortLowerCaseAvailable = true;
     let shortUpperCaseAvailable = true;
