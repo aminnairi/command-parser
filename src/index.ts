@@ -16,8 +16,9 @@ export class CommandParser {
   private options: IOptions[];
   private versionIdentifier: string;
   private name: string;
+  private synopsis: string;
 
-  constructor(name: string, versionIdentifier: string) {
+  constructor(name: string, versionIdentifier: string, synopsis: string) {
     if (name === undefined) {
       throw new ReferenceError(
         '[CommandParser][constructor] first argument is mandatory'
@@ -41,6 +42,15 @@ export class CommandParser {
         '[CommandParser][constructor] second argument should be of type string'
       );
     }
+
+    if (synopsis === undefined) {
+      throw new TypeError('[CommandParser][constructor] third argument is mandatory');
+    }
+
+    if (typeof synopsis !== 'string') {
+      throw new TypeError('[CommandParser][constructor] third argument should be of type string');
+    }
+
     this.options = [
       {
         description: 'Display this message',
@@ -59,6 +69,7 @@ export class CommandParser {
     ];
     this.name = name;
     this.versionIdentifier = versionIdentifier;
+    this.synopsis = synopsis;
   }
 
   public option(
@@ -230,7 +241,10 @@ export class CommandParser {
   }
 
   public help(): string {
-    let message: string = 'OPTIONS';
+    let message: string = 'SYNOPSIS';
+
+    message += `\n\n    ${this.synopsis}`;
+    message += '\n\nOPTIONS';
 
     for (const option of this.options) {
       message += '\n\n    ';
