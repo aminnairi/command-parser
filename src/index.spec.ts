@@ -21,7 +21,7 @@ const consoleLogOutputCorrectly = (callback: () => {}, message: string): boolean
 
 describe('Command Parser', () => {
   it('should parse double-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('tunel', 'Tunel');
@@ -44,7 +44,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse double-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -65,7 +65,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('tunel', 'Tunel');
@@ -88,7 +88,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -109,7 +109,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
     commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
@@ -129,7 +129,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('passthrough', 'Tunel to use');
@@ -156,7 +156,7 @@ describe('Command Parser', () => {
   });
 
   it('should parse mixed-dash mixed-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'Credentials');
     commandParser.option('passthrough', 'Tunel to use');
@@ -187,7 +187,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly formated from the arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
     commandParser.option('passthrough', 'File to where to find the OpenVPN configuration');
@@ -224,7 +224,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly with same first letter arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0');
+    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
     commandParser.option('configuration', 'File to where to find the OpenVPN configuration');
@@ -265,42 +265,42 @@ describe('Command Parser', () => {
   });
 
   it('should throw an error when providing a non-string as the first argument of the option method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     // @ts-ignore
     expect(() => parser.option(123, 'Configuration', NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] first argument should be of type string');
   });
 
   it('should throw an error when providing a non-string as the second argument of the option method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     // @ts-ignore
     expect(() => parser.option('configuration', 123, NO_VALUE_EXPECTED)).to.throw('[CommandParser][option] second argument should be of type string');
   });
 
   it('should throw an error when providing a non-boolean as the third argument of the option method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     // @ts-ignore
     expect(() => parser.option('configuration', 'Configuration', 'NO_VALUE_EXPECTED')).to.throw('[CommandParser][option] third argument should be of type boolean');
   });
 
   it('should throw an error when providing a non-array as the first argument of the parse method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     // @ts-ignore
     expect(() => parser.parse({})).to.throw('[CommandParser][parse] first argument must be of type array');
   });
 
   it('should throw an error if one or more element of the first argument is a non-string for the parse method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     // @ts-ignore
     expect(() => parser.parse([123])).to.throw('[CommandParser][parse] all elements of the first argument must be of type string');
   });
 
   it('should add all the unexpected option in the argument property for the method parse', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     const options: string = JSON.stringify(parser.parse([
       '--unexpected',
@@ -315,7 +315,7 @@ describe('Command Parser', () => {
   });
 
   it('should trigger the help when using the --help parameter for the parse method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `OPTIONS
 
@@ -329,7 +329,7 @@ describe('Command Parser', () => {
   });
 
   it('should trigger the help when using the -h parameter for the parse method', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `OPTIONS
 
@@ -343,7 +343,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the name and version using the --version parameter', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--version' ]), 'parser version 1.0.0');
     
@@ -351,7 +351,7 @@ describe('Command Parser', () => {
   });
 
   it('should display the name and version using the -v parameter', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-v' ]), 'parser version 1.0.0');
     
@@ -359,7 +359,7 @@ describe('Command Parser', () => {
   });
 
   it('should use the fallback process argument instead of an array for the method parse', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     process.argv = [
       '/usr/local/bin/node',
@@ -380,7 +380,7 @@ describe('Command Parser', () => {
   });
 
   it('should not append the value if a parameter is missing its value', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     parser.option('secure', 'Secure the tunel', NO_VALUE_EXPECTED);
     parser.option('file', 'File to be used for the OpenVPN connection');
@@ -399,7 +399,7 @@ describe('Command Parser', () => {
   });
 
   it('should add the parameter with the double-dash-equal syntax', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     parser.option('file', 'File to be used for the OpenVPN connection');
 
@@ -437,13 +437,13 @@ describe('Command Parser', () => {
   });
 
   it('should throw an error when using "help" as an option name', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     expect(() => parser.option('help', 'Help')).to.throw('[CommandParser][option] "help" is not a valid option name')
   });
 
   it('should throw an error when using "version" as an option name', () => {
-    const parser: CommandParser = new CommandParser('parser', '1.0.0');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
     expect(() => parser.option('version', 'Version')).to.throw('[CommandParser][option] "version" is not a valid option name')
   });
