@@ -1,3 +1,14 @@
+**0.3.0**
+- Added a method to display the version and name of the command.
+- Speeded up the internal short naming assignation algorithm to not search for a upper case short name if the lower case is already available.
+- Fixed a mismatch configuration between the Master and Development branches.
+- Added a badge for showing all the dependencies of the NPM package in the documentation.
+- Added a badge for showing the vulnerabilities of the NPM package in the documentation.
+- Remove the badge for showing the total NPM downloads in the documentation.
+- Added a guard to prevent using "help" & "version" as an option name.
+- Added the necessary unit testing cases for the help/version option name guard.
+- More TypeScript type checking on the unit testing file.
+
 **0.2.0**
 - Automatic command letter assignation for commands meaning that a command with the same letter will take the lower/upper case whether it is available or will be assigned the long syntax only.
 - Added tests for the automatic command letter assignation.
