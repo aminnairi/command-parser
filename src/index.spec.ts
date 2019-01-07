@@ -466,4 +466,22 @@ OPTIONS
 
     expect(() => parser.option('version', 'Version')).to.throw('[CommandParser][option] "version" is not a valid option name')
   });
+
+  it('should throw an error if the synopsis is missing', () => {
+    // @ts-ignore
+    const instanciation = () => new CommandParser('parser', '1.0.0');
+
+    const exception: string = '[CommandParser][constructor] third argument is mandatory';
+
+    expect(instanciation).to.throw(exception);
+  });
+
+  it('should throw an error if the synopsis is of type non-string', () => {
+    // @ts-ignore
+    const instanciation = () => new CommandParser('parser', '1.0.0', 123);
+
+    const exception: string = '[CommandParser][constructor] third argument should be of type string';
+
+    expect(instanciation).to.throw(exception);
+  });
 });
