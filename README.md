@@ -7,11 +7,11 @@ Command Line Arguments Parser
 ## Quick Start
 *Notice: these instructions will use [NPM][npm], though you can use [Yarn][yarn] instead if you know what you are doing. The following instructions will not explain how to use [Yarn][yarn].*
 
-**1. Install the [Nodejs](https://nodejs.org/en/) plateform and check that it is correcly installed.**
+**1. Install the [Nodejs](https://nodejs.org/en/) plateform and check that it is correctly installed.**
 ```console
 $ node --version
 ```
-**2. Install the [NPM][npm] command line interface and check that it is correcly installed.**
+**2. Install the [NPM][npm] command line interface and check that it is correctly installed.**
 ```console
 $ npm --version
 ```
