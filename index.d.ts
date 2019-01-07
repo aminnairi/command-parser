@@ -5,7 +5,8 @@ export declare class CommandParser {
     private options;
     private versionIdentifier;
     private name;
-    constructor(name: string, versionIdentifier: string);
+    private synopsis;
+    constructor(name: string, versionIdentifier: string, synopsis: string);
     option(name: string, description: string, noValueExpected?: boolean): this;
     parse(parameters?: string[]): ICommandParserOptions;
     help(): string;
