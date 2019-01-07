@@ -21,12 +21,12 @@ const consoleLogOutputCorrectly = (callback: () => {}, message: string): boolean
 
 describe('Command Parser', () => {
   it('should parse double-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'Credentials');
-    commandParser.option('tunel', 'Tunel');
+    parser.option('credentials', 'Credentials');
+    parser.option('tunel', 'Tunel');
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '--credentials',
       '/etc/openvpn/client/credentials.txt',
@@ -44,12 +44,12 @@ describe('Command Parser', () => {
   });
 
   it('should parse double-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    parser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/config.ovpn',
       '--secure',
       '--tcp'
@@ -65,12 +65,12 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash non-boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'Credentials');
-    commandParser.option('tunel', 'Tunel');
+    parser.option('credentials', 'Credentials');
+    parser.option('tunel', 'Tunel');
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '-c',
       '/etc/openvpn/client/credentials.txt',
@@ -88,12 +88,12 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    parser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '-s',
       '-t'
@@ -109,12 +109,12 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token boolean arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    parser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '-st',
     ]));
@@ -129,14 +129,14 @@ describe('Command Parser', () => {
   });
 
   it('should parse single-dash single-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'Credentials');
-    commandParser.option('passthrough', 'Tunel to use');
-    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    parser.option('credentials', 'Credentials');
+    parser.option('passthrough', 'Tunel to use');
+    parser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '-stc',
       '/etc/openvpn/cilent/credentials.txt',
@@ -156,15 +156,15 @@ describe('Command Parser', () => {
   });
 
   it('should parse mixed-dash mixed-token mixed arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'Credentials');
-    commandParser.option('passthrough', 'Tunel to use');
-    commandParser.option('user', 'User to substitue to');
-    commandParser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
+    parser.option('credentials', 'Credentials');
+    parser.option('passthrough', 'Tunel to use');
+    parser.option('user', 'User to substitue to');
+    parser.option('secure', 'Secure the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use TCP protocol', NO_VALUE_EXPECTED);
 
-    const options: string = JSON.stringify(commandParser.parse([
+    const options: string = JSON.stringify(parser.parse([
       '/etc/openvpn/client/openvpn.conf',
       '-stc',
       '/etc/openvpn/cilent/credentials.txt',
@@ -187,17 +187,21 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly formated from the arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
-    commandParser.option('passthrough', 'File to where to find the OpenVPN configuration');
-    commandParser.option('user', 'User to be substituted to before opening the tunnel');
-    commandParser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+    parser.option('credentials', 'File to where to find the OpenVPN credentials');
+    parser.option('passthrough', 'File to where to find the OpenVPN configuration');
+    parser.option('user', 'User to be substituted to before opening the tunnel');
+    parser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
 
-    const help: string = commandParser.help();
+    const help: string = parser.help();
 
-    const expected: string = `OPTIONS
+    const expected: string = `SYNOPSIS
+
+    A command parser
+
+OPTIONS
 
     -h, --help
         Display this message
@@ -224,18 +228,23 @@ describe('Command Parser', () => {
   });
 
   it('should display the help correctly with same first letter arguments', () => {
-    const commandParser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
+    const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    commandParser.option('credentials', 'File to where to find the OpenVPN credentials');
-    commandParser.option('configuration', 'File to where to find the OpenVPN configuration');
-    commandParser.option('command', 'Command to use instead of OpenVPN');
-    commandParser.option('user', 'User to be substituted to before opening the tunnel');
-    commandParser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
-    commandParser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
+    parser.option('credentials', 'File to where to find the OpenVPN credentials');
+    parser.option('configuration', 'File to where to find the OpenVPN configuration');
+    parser.option('command', 'Command to use instead of OpenVPN');
+    parser.option('user', 'User to be substituted to before opening the tunnel');
+    parser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
+    parser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
 
-    const help: string = commandParser.help();
+    const help: string = parser.help();
 
-    const expected: string = `OPTIONS
+
+    const expected: string = `SYNOPSIS
+
+    A command parser
+
+OPTIONS
 
     -h, --help
         Display this message
@@ -317,7 +326,11 @@ describe('Command Parser', () => {
   it('should trigger the help when using the --help parameter for the parse method', () => {
     const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `OPTIONS
+    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `SYNOPSIS
+
+    A command parser
+
+OPTIONS
 
     -h, --help
         Display this message
@@ -331,7 +344,13 @@ describe('Command Parser', () => {
   it('should trigger the help when using the -h parameter for the parse method', () => {
     const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `OPTIONS
+    console.log(parser.help());
+
+    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `SYNOPSIS
+
+    A command parser
+
+OPTIONS
 
     -h, --help
         Display this message
