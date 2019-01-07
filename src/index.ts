@@ -44,11 +44,15 @@ export class CommandParser {
     }
 
     if (synopsis === undefined) {
-      throw new TypeError('[CommandParser][constructor] third argument is mandatory');
+      throw new TypeError(
+        '[CommandParser][constructor] third argument is mandatory'
+      );
     }
 
     if (typeof synopsis !== 'string') {
-      throw new TypeError('[CommandParser][constructor] third argument should be of type string');
+      throw new TypeError(
+        '[CommandParser][constructor] third argument should be of type string'
+      );
     }
 
     this.options = [
