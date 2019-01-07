@@ -1,3 +1,13 @@
+**0.4.0**
+- Now redirecting to the master branch for the Coveralls badge.
+- Added more NPM logos on badge whenever possible.
+- It is now possible to add a synopsis for the command that will be displayed in the help message.
+- Updated the unit testings constructors to match the new synopsis option.
+- Fixed failed tests for the help method.
+- Added tests for the constructor synopsis guard.
+- Added usage example about the instanciation of the parser with the added options.
+- Fixed typos in the documentation.
+
 **0.3.0**
 - Added a method to display the version and name of the command.
 - Speeded up the internal short naming assignation algorithm to not search for a upper case short name if the lower case is already available.
