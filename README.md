@@ -61,7 +61,7 @@ import { CommandParser, NO_VALUE_EXPECTED } from '@aminnairi/command-parser';
 ```
 **9. Instanciate the `CommandParser` class**
 ```javascript
-const parser = new CommandParser();
+const parser = new CommandParser('my-command', '1.0.0', 'This is a test command');
 ```
 *Note: you can name the instance with whatever name you would like. `parser` is just a convention.*
 
@@ -82,10 +82,17 @@ $ node index.js --meme conceited-reaction so Java is not free anymore huh
 **13. Get help from the command line.**
 ```console
 $ node index.js --help
+SYNOPSIS
+
+    This is a test command
+
 OPTIONS
 
     -h, --help
         Display this message
+
+    -v, --version
+        Display the name and version of this command
 
     -m, --meme [MEME]
         The meme template to be used
@@ -102,6 +109,18 @@ OPTIONS
 - [x] Meme example.
 
 ## Usage
+
+### Instanciate the parser
+
+```javascript
+'use strict';
+
+const name = 'my-cli';
+const version = '1.0.0';
+const synopsis = 'An awesome CLI for Node.js';
+
+const parser = new CommandParser(name, version, synopsis);
+```
 
 ### Argument with value
 
@@ -190,10 +209,17 @@ if (!('meme' in commandLineArguments)) {
 
 ```console
 $ node index.js so Java is not free anymore huh
+SYNOPSIS
+
+    This is a test command
+
 OPTIONS
 
     -h, --help
         Display this message
+
+    -v, --version
+        Display the name and version of this command
 
     -m, --meme [MEME]
         The meme template to be used
