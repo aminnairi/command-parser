@@ -1,3 +1,6 @@
+**0.4.1**
+- Added Travis CI logo in the corresponding badge.
+
 **0.4.0**
 - Now redirecting to the master branch for the Coveralls badge.
 - Added more NPM logos on badge whenever possible.
