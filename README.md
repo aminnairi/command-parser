@@ -1,6 +1,6 @@
 # command-parser
 
-[![](https://img.shields.io/github/license/aminnairi/command-parser.svg?style=square&logo=github)](./LICENSE) [![](https://img.shields.io/npm/v/@aminnairi/command-parser.svg?style=square&logo=npm)](https://www.npmjs.com/package/@aminnairi/command-parser)  ![](https://img.shields.io/david/aminnairi/command-parser.svg?logo=npm) ![](https://img.shields.io/snyk/vulnerabilities/npm/@aminnairi/command-parser.svg?logo=npm) [![Coverage Status](https://coveralls.io/repos/github/aminnairi/command-parser/badge.svg?branch=master)](https://coveralls.io/github/aminnairi/command-parser?branch=development) ![](https://img.shields.io/travis/aminnairi/command-parser/master.svg?logo=travis)
+[![](https://img.shields.io/github/license/aminnairi/command-parser.svg?style=square&logo=github)](./LICENSE) [![](https://img.shields.io/npm/v/@aminnairi/command-parser.svg?style=square&logo=npm)](https://www.npmjs.com/package/@aminnairi/command-parser)  ![](https://img.shields.io/david/aminnairi/command-parser.svg?logo=npm) ![](https://img.shields.io/snyk/vulnerabilities/npm/@aminnairi/command-parser.svg?logo=npm) [![](https://img.shields.io/travis/aminnairi/command-parser/master.svg?logo=travis)](https://travis-ci.org/aminnairi/command-parser) [![](https://img.shields.io/coveralls/github/aminnairi/command-parser/master.svg)](https://coveralls.io/github/aminnairi/command-parser?branch=master)
 
 Command Line Arguments Parser
 
