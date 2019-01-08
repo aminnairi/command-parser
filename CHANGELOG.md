@@ -1,3 +1,7 @@
+**0.4.2**
+- Fixed the link to the coveralls report being set on branch development instead of master in the documentation.
+- Added a link to the Travis CI report for the Travis CI badge in the documentation.
+
 **0.4.1**
 - Added Travis CI logo in the corresponding badge.
 
