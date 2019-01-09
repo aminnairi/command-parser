@@ -245,13 +245,23 @@ export class CommandParser {
   }
 
   public help(): string {
-    let message: string = 'SYNOPSIS';
+    let message: string = 'NAME';
 
-    message += `\n\n    ${this.synopsis}`;
+    message += `\n    ${this.name}`;
+    message += '\n\nSYNOPSIS';
+    message += `\n    ${this.synopsis}`;
     message += '\n\nOPTIONS';
 
+    let first = true;
+
     for (const option of this.options) {
-      message += '\n\n    ';
+      if (first) {
+        first = false;
+      } else {
+        message += '\n';
+      }
+
+      message += '\n    ';
 
       if (option.short) {
         message += `${option.short}, ${option.long}`;
