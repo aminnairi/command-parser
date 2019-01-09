@@ -2,6 +2,7 @@
 - New production build for the `index.js` file.
 - Fixed tests that were in conflicts after adding the new name feature in the help display.
 - Now displaying the name in the help command & method.
+- Updated the help output in the documentation.
 
 **0.4.2**
 - Fixed the link to the coveralls report being set on branch development instead of master in the documentation.
