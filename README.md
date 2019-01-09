@@ -82,12 +82,13 @@ $ node index.js --meme conceited-reaction so Java is not free anymore huh
 **13. Get help from the command line.**
 ```console
 $ node index.js --help
-SYNOPSIS
+NAME
+    my-command
 
+SYNOPSIS
     This is a test command
 
 OPTIONS
-
     -h, --help
         Display this message
 
@@ -209,12 +210,13 @@ if (!('meme' in commandLineArguments)) {
 
 ```console
 $ node index.js so Java is not free anymore huh
-SYNOPSIS
+NAME
+    my-command
 
+SYNOPSIS
     This is a test command
 
 OPTIONS
-
     -h, --help
         Display this message
 
