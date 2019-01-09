@@ -195,14 +195,17 @@ describe('Command Parser', () => {
     parser.option('secure', 'Use advanced maximum security features for the VPN tunnel', NO_VALUE_EXPECTED);
     parser.option('tcp', 'Use the TCP protocol instead of UDP', NO_VALUE_EXPECTED);
 
+    console.log(parser.help());
+
     const help: string = parser.help();
 
-    const expected: string = `SYNOPSIS
+    const expected: string = `NAME
+    parser
 
+SYNOPSIS
     A command parser
 
 OPTIONS
-
     -h, --help
         Display this message
 
@@ -240,12 +243,13 @@ OPTIONS
     const help: string = parser.help();
 
 
-    const expected: string = `SYNOPSIS
+    const expected: string = `NAME
+    parser
 
+SYNOPSIS
     A command parser
 
 OPTIONS
-
     -h, --help
         Display this message
 
@@ -326,12 +330,13 @@ OPTIONS
   it('should trigger the help when using the --help parameter for the parse method', () => {
     const parser: CommandParser = new CommandParser('parser', '1.0.0', 'A command parser');
 
-    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `SYNOPSIS
+    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '--help' ]), `NAME
+    parser
 
+SYNOPSIS
     A command parser
 
 OPTIONS
-
     -h, --help
         Display this message
 
@@ -346,12 +351,13 @@ OPTIONS
 
     console.log(parser.help());
 
-    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `SYNOPSIS
+    const consoleCalled: boolean = consoleLogOutputCorrectly(() => parser.parse([ '-h' ]), `NAME
+    parser
 
+SYNOPSIS
     A command parser
 
 OPTIONS
-
     -h, --help
         Display this message
 
