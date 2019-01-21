@@ -1,6 +1,6 @@
 {
   "name": "@aminnairi/command-parser",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Command Line Parser",
   "main": "index.js",
   "types": "index.d.ts",
