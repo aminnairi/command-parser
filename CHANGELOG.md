@@ -1,3 +1,8 @@
+**0.5.1**
+- Complete rewrite of the documentation with more useful informations and less content without removing key points.
+- Removed the `npm` script because it is no longer needed and was not cross-platform.
+- Removed the old `README.md` file.
+
 **0.5.0**
 - New production build for the `index.js` file.
 - Fixed tests that were in conflicts after adding the new name feature in the help display.
