@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-# This script requires to have Docker installed and properly configured in order
-# for this script to work regardless of your environment
-# See https://www.docker.com/ for more informations
-# /!\ MAKE SURE TO NOT PUBLISH ANY NPM CREDENTIALS OVER THE INTERNET /!\
-
-docker run --rm -itu node -w /home/node -v "$(pwd)":/home/node node npm $@
-
-exit 0
